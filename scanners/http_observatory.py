@@ -27,6 +27,8 @@ class ScanState(Enum):
             return ScanState.STARTING
         elif state == "RUNNING":
             return ScanState.RUNNING
+        elif state == "PENDING":
+            return ScanState.PENDING
 
 
 class ScanObject:
@@ -96,21 +98,29 @@ class HTTPObservatory:
     url: str = None
 
     def __init__(self, url: str):
+        print("Initializing http-observatory")
         self.url = url
         payload = {
             'hidden': True,
             'rescan': True,
         }
-        self.scan_object = ScanObject(requests.post(self.base_url + "/analyze?host=" + self.url, data=payload).json())
-        self.EnsureScanResult()
+        p = requests.post(self.base_url + "/analyze?host=" + self.url, data=payload)
+        if p.status_code != 200:
+            print(p.text)
+            exit(-1)
+        if "error" in p.json():
+            print(p.json()["text"])
+            exit(-2)
+        self.scan_object = ScanObject(p.json())
 
     def EnsureScanResult(self):
         while self.scan_object.state != ScanState.FINISHED:
-            print("Scan not yet finished ...")
+            print(f"Scan not yet finished ... {self.scan_object.state}")
             sleep(5)
             self.scan_object = ScanObject(requests.get(self.base_url + "/analyze?host=" + self.url).json())
 
     def GetBulletin(self) -> list[Bulletin]:
+        self.EnsureScanResult()
         if self.scan_object is None:
             print("No scan object found, aborting")
             exit(-1)

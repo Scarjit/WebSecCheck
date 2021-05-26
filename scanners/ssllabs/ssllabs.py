@@ -15,6 +15,7 @@ class SSLLabs:
     result: results = None
 
     def __init__(self, url: str):
+        print("Initializing ssllabs")
         raw_res = None
         if sys.platform.startswith("win32"):
             raw_res = subprocess.run(
@@ -35,8 +36,6 @@ class SSLLabs:
                 stdout=subprocess.PIPE
             )
         decoded_res = raw_res.stdout.decode('utf-8')
-        # with open(hashlib.md5(url.encode('utf-8')).hexdigest() + ".txt", "w") as f:
-        #    f.write(decoded_res)
         self.result = top_level_from_dict(json.loads(decoded_res))
 
     def GetBulletin(self) -> list[Bulletin]:

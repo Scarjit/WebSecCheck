@@ -13,6 +13,7 @@ class SecurityHeaders:
     soup: BeautifulSoup = None
 
     def __init__(self, url: str):
+        print("Initializing security-headers")
         self.url = url
         self.test_url = f"https://securityheaders.com/?q={self.url}&hide=on&followRedirects=on"
 
