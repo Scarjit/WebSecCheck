@@ -18,6 +18,11 @@
 |--disable-ssllabs | Disable testing using Qualys SSLLabs.com |
 |--generate-html | Generates HTML report |
 |--generate-gfm | Generates Github Flavored Markdown report |
+|--generate-github-issue| Generates or updates an github issue|
+|--github-user | User with read/write access to repo|
+|--github-token | Personal access token |
+|--github-repo-owner | Owner name of repository|
+|--github-repo-name | Name of the repo|
 |< url >| url to test |
 
 ## Example:
