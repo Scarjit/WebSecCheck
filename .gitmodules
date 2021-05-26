@@ -1,0 +1,3 @@
+[submodule "ssllabs-scan"]
+	path = ssllabs-scan
+	url = https://github.com/ssllabs/ssllabs-scan.git
