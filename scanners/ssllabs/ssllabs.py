@@ -20,18 +20,16 @@ class SSLLabs:
         if sys.platform.startswith("win32"):
             raw_res = subprocess.run(
                 ["./ssllabs-scan/ssllabs-scan-v3.exe",
-                 "--quiet",
                  "--usecache",
-                 "true",
+                 "false",
                  url],
                 stdout=subprocess.PIPE
             )
         else:
             raw_res = subprocess.run(
                 ["./ssllabs-scan/ssllabs-scan-v3",
-                 "--quiet",
                  "--usecache",
-                 "true",
+                 "false",
                  url],
                 stdout=subprocess.PIPE
             )
