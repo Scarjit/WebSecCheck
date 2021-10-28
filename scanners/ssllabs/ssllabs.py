@@ -1,9 +1,7 @@
-import hashlib
 import json
-import pprint
+import json
 import subprocess
 import sys
-from enum import Enum
 
 from Bulletin import Bulletin, IssueLevel
 from scanners.ssllabs import results

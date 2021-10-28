@@ -1,13 +1,10 @@
 from typing import List
 
-import github3.issues
-
-from Bulletin import Bulletin, IssueLevel
-from generators.gfm import generate_gfm_str
-from jsonify import jsonify
-
 from github3 import login
 from github3.issues import ShortIssue
+
+from Bulletin import Bulletin
+from generators.gfm import generate_gfm_str
 
 
 def generate_gh_issue(bulletins: List[Bulletin], user: str, token: str, repo_owner: str, repo_name: str):
