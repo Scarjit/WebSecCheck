@@ -6,6 +6,7 @@
  - Compile ssllabs scan (optional)
     - ```cd ssllabs-scan```
     - ```go build ssllabs-scan-v3.go```
+    - ```cd ..```
  - Run ```main.py```
 
 # Arguments
